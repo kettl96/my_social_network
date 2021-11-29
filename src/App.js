@@ -1,18 +1,21 @@
+import React from 'react';
 import './App.css';
-import  React from 'react';
+import Dialogs from './components/Dialogs/Dialogs';
+import Header from './components/Header/Header';
+import Navbar from './components/Navbar/Navbar';
+import Profile from './components/Profile/Profile';
 
-import Header from './Header';
-import Technologies from './Technologies';
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <Header />
-      <Technologies />
+    <div className="app-wrapper">
+      <div className="app">
+        <Header />
+        <Navbar />
+        {/* <Profile />  */}
+        <Dialogs/>
+      </div> 
     </div>
-  );
+  )
 }
-
-
-
 
 export default App;
