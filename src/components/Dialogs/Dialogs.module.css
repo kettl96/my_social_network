@@ -1,0 +1,24 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  /* grid-template-rows: 100%; */
+  grid-gap: 10px;
+}
+
+.dialogs_items {
+  background: aqua;
+padding: 10px;
+}
+.dialog {
+
+}
+
+.messages {
+  padding: 10px;
+  background: red;
+
+}
+
+.message {
+
+}

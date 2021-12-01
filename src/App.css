@@ -1,23 +1,26 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Andika+New+Basic&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Estonia&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
+
 .app-wrapper {
- display: flex;
- justify-content: center;
-margin-top: 10px;
-/* font-family: "Estonia"; */
-/* font-family: "Andika New Basic"; */
-font-family: "Permanent Marker";
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  /* font-family: "Estonia"; */
+  /* font-family: "Andika New Basic"; */
+  font-family: "Permanent Marker";
 }
+
 .app {
   display: grid;
   width: 1200px;
-  
 
-  grid-template-areas: 
-  "h h"
-  "n c";
+
+  grid-template-areas:
+    "h h"
+    "n c";
 
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
@@ -28,4 +31,13 @@ font-family: "Permanent Marker";
 
 a {
   text-decoration: none;
+}
+
+
+
+.app-wrapper-content {
+  grid-area: c;
+  background-color: gainsboro;
+  border-radius: 20px;
+
 }
