@@ -4,7 +4,7 @@
   background-color: aqua;
   border-radius: 20px;
   font-size: 22px;
-
+  box-shadow: 5px 2px 12px black;
   }
   li {
   list-style-type: none;
