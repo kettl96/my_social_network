@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import s from './Dialogs.module.css'
 
+
 const DialogItem = (props) => {
   return <div className={s.dialog + ' ' + s.active}>
     <NavLink to={"/dialogs/" + props.id}>{props.name}</NavLink>
@@ -19,7 +20,7 @@ const Dialogs = () => {
     { id: 3, name: 'sasha' },
     { id: 4, name: 'hover' },
     { id: 5, name: 'hren' },
-  ]
+  ];
 
   let messages = [
     { id: 1, message: 'hi' },
@@ -27,7 +28,8 @@ const Dialogs = () => {
     { id: 3, message: 'yo' },
     { id: 4, message: 'yo' },
     { id: 5, message: 'yo' }
-  ]
+  ];
+
 
   let dialogsElements = dialogs.map
     (d => <DialogItem name={d.name} id={d.id} />);
