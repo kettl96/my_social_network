@@ -24,7 +24,7 @@
 
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
-  grid-gap: 15px;
+  grid-gap: 20px;
 }
 
 
@@ -37,7 +37,7 @@ a {
 
 .app-wrapper-content {
   grid-area: c;
-  background-color: gainsboro;
-  border-radius: 20px;
+  /* background-color: gainsboro; */
+  /* border-radius: 20px; */
 
 }
