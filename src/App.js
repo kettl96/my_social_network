@@ -13,8 +13,7 @@ import Setting from './components/Settings/Setting';
 
 const App = (props) => {
   return (
-    <BrowserRouter>
-      <div className="app-wrapper">
+          <div className="app-wrapper">
         <div className="app">
           <Header />
           <Navbar friends={props.state.friendsPage}/>
@@ -25,7 +24,8 @@ const App = (props) => {
                     state={props.state.dialogsPage}/>} />
               <Route path='profile' 
                   element={<Profile 
-                    state= {props.state.profilePage}/>} />
+                    state= {props.state.profilePage} 
+                    addPost={props.addPost}/>} />
               <Route path='news' element={<News />} />
               <Route path='music' element={<Music />} />
               <Route path='settings' element={<Setting />} />
@@ -33,7 +33,7 @@ const App = (props) => {
           </div>
         </div>
       </div>
-    </BrowserRouter>
+    
   )
 }
 

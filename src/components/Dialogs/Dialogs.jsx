@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Route, Routes } from 'react-router-dom';
 import s from './Dialogs.module.css'
 
 
@@ -37,13 +37,16 @@ const Dialogs = (props) => {
     (message => <Message message={message.message} id={message.id} isMine={message.isMine}/>);
 
 
+
   return (
     <div className={s.dialogs}>
       <div className={s.dialogs_items}>
         {dialogsElements}
       </div>
-      <div className={s.messages}>
+      <div className={s.messages}>      
         {messagesElements}
+        <textarea name="" id="" cols="60" rows="4"></textarea>
+        <button>Send</button>       
       </div>
     </div>
   );
