@@ -7,7 +7,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import store from './redux/state'
 
-let _callSubscriber = (state) => {
+let rerenderEntireTree = (state) => {
   ReactDOM.render(
     <BrowserRouter>
          <App state={state} dispatch={store.dispatch.bind(store)} />
@@ -16,6 +16,6 @@ let _callSubscriber = (state) => {
 }
 
 
-_callSubscriber(store.getState());
+rerenderEntireTree(store.getState());
 
-store.subscribe(_callSubscriber);
+store.subscribe(rerenderEntireTree);

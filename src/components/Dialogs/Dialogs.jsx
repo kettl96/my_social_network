@@ -8,24 +8,24 @@ import { addMessageActionCreator, updateNewMessageTextActionCreator } from './..
 const DialogItem = (props) => {
   return <div className={s.dialog + ' ' + s.active}>
     <NavLink to={"/dialogs/" + props.id}>
-      <img src={props.img}/>{props.name}
+      <img src={props.img} />{props.name}
     </NavLink>
   </div>
 }
 
 const Message = (props) => {
-  
+
   let isMine = (isMine) => {
-    if (isMine){
+    if (isMine) {
       return s.messageLeft;
     } else {
       return s.messageRight;
     }
-    
+
   };
   return <div className={s.message + ' ' + isMine(props.isMine)}>
     <div className={s.innerMessage}>{props.message}</div>
-    </div>
+  </div>
 }
 
 
@@ -33,36 +33,38 @@ const Message = (props) => {
 const Dialogs = (props) => {
 
   let dialogsElements = props.state.dialogs.map
-    (dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img}/>);
-    console.log(dialogsElements);
+    (dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img} />);
 
   let messagesElements = props.state.messages.map
-    (message => <Message message={message.message} id={message.id} isMine={message.isMine}/>);
+    (message => <Message message={message.message} id={message.id} isMine={message.isMine} />);
 
-   
-let addMessage = () => {
-  props.dispatch(addMessageActionCreator());
-}
 
-let newMessageElement = React.createRef();
+  let addMessage = () => {
+    props.dispatch(addMessageActionCreator());
+  }
 
-let onMessageChange = () => {
-  let text = newMessageElement.current.value;
+  let newMessageElement = React.createRef();
 
-  let action = updateNewMessageTextActionCreator(text);
-  props.dispatch(action);
-}
+  let onMessageChange = () => {
+    let text = newMessageElement.current.value;
+
+    let action = updateNewMessageTextActionCreator(text);
+    props.dispatch(action);
+  }
   return (
     <div className={s.dialogs}>
       <div className={s.dialogs_items}>
         {dialogsElements}
       </div>
-      <div className={s.messages}>      
-        {messagesElements}
-        <textarea 
-        onChange={onMessageChange} ref={newMessageElement}
-        name="" id="" cols="60" rows="4" />
-        <button onClick={addMessage}>Send</button>       
+      <div className={s.messages}>
+        <div>{messagesElements}</div>
+        <div>
+          <textarea
+          value={props.newMessageText}
+            onChange={onMessageChange} ref={newMessageElement}
+            name="" id="" cols="60" rows="4" />
+        </div>
+        <div><button onClick={addMessage}>Send</button></div>
       </div>
     </div>
   );

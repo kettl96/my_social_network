@@ -25,7 +25,7 @@ let store = {
         { id: 4, message: 'jjhfhjbhddjfhjdh', isMine: false },
         { id: 5, message: 'jskfdjfjklsnfjlksdnfsnjdnfjksndj', isMine: true }
       ],
-      newMessageText: '1',
+      newMessageText: '',
     },
     friendsPage: [
       { id: 1, name: 'Genadzi', img: 'https://avatars.githubusercontent.com/u/74081058?v=4' },
@@ -43,43 +43,41 @@ let store = {
     return this._state;
   },
   subscribe(observer) {
-    this.rerenderEntireTree = observer;
+    this._callSubscriber = observer;
   },
 
 
 
   dispatch(action) {
     if (action.type === 'ADD-POST') {
-        let newPost = {
-          id: 5,
-          message: this._state.profilePage.newPostText,
-          likesCount: 0  
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this.rerenderEntireTree(this._state);
+      let newPost = {
+        id: 5,
+        message: this._state.profilePage.newPostText,
+        likesCount: 0
+      };
+      this._state.profilePage.posts.push(newPost);
+      this._state.profilePage.newPostText = '';
+      this._callSubscriber(this._state);
 
 
     } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-        this._state.profilePage.newPostText = action.newText;
-        this.rerenderEntireTree(this._state);
+      this._state.profilePage.newPostText = action.newText;
+      this._callSubscriber(this._state);
 
 
+    } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+      this._state.dialogsPage.newMessageText = action.newText;
+      this._callSubscriber(this._state);
     } else if (action.type === 'ADD-MESSAGE') {
       let newMessage = {
-        id: this._state.dialogsPage.messages[this._state.dialogsPage.messages.length -1].id+1,
+        id: this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id + 1,
         message: this._state.dialogsPage.newMessageText,
       };
       this._state.dialogsPage.messages.push(newMessage);
       this._state.dialogsPage.newMessageText = '';
-      this.rerenderEntireTree(this._state);
-console.log(this._state.dialogsPage.messages);
+      this._callSubscriber(this._state);
 
-    } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-      this._state.dialogsPage.newMessageText = action.newText;
-      this.rerenderEntireTree(this._state);
     }
-
   }
 }
 
@@ -98,10 +96,10 @@ export const addMessageActionCreator = () => {
     type: 'ADD-MESSAGE'
   }
 }
-export const updateNewMessageTextActionCreator = (text) => {
+export const updateNewMessageTextActionCreator = (newText) => {
   return {
-    type: 'UPDATE-NEW-MESSAGE-TEXT', 
-    newText: text
+    type: 'UPDATE-NEW-MESSAGE-TEXT',
+    newText: newText
   }
 }
 
