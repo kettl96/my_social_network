@@ -4,7 +4,6 @@ import s from "./Navbar.module.css";
 import Friends from './Friends/Friends';
 
 const Navbar = (props) => {
-  
   return (
     
     <nav className={s.nav}>

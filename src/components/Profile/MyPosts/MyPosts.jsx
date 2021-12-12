@@ -1,7 +1,7 @@
 import React from 'react';
 import s from "./MyPosts.module.css";
 import Post from './Post/Post.jsx';
-import { addPostActionCreator, updateNewPostTextActionCreator } from './../../../redux/state';
+import { addPostActionCreator, updateNewPostTextActionCreator } from './../../../redux/profile-reducer';
 
 
 const MyPosts = (props) => {
@@ -21,6 +21,7 @@ const MyPosts = (props) => {
     let action = updateNewPostTextActionCreator(text);
     props.dispatch(action);
   }
+  
   return (
     <div>
       <h3>My posts</h3>
