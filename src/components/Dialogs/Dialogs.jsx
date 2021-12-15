@@ -1,9 +1,6 @@
 import React from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import s from './Dialogs.module.css'
-import { addMessageActionCreator, updateNewMessageTextActionCreator } from './../../redux/dialogs-reducer';
-
-
 
 const DialogItem = (props) => {
   return <div className={s.dialog + ' ' + s.active}>
@@ -28,29 +25,27 @@ const Message = (props) => {
   </div>
 }
 
-
-
 const Dialogs = (props) => {
 
+  let state = props.dialogsPage;
 
-  let dialogsElements = props.state.dialogs.map
+  let dialogsElements = state.dialogs.map
     (dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img} />);
 
-  let messagesElements = props.state.messages.map
+  let messagesElements = state.messages.map
     (message => <Message message={message.message} id={message.id} isMine={message.isMine} />);
 
 
   let addMessage = () => {
-    props.dispatch(addMessageActionCreator());
+    props.sendMessage();
   }
 
   let newMessageElement = React.createRef();
 
   let onMessageChange = () => {
     let text = newMessageElement.current.value;
+    props.updateNewMessage(text);
 
-    let action = updateNewMessageTextActionCreator(text);
-    props.dispatch(action);
   }
   return (
     <div className={s.dialogs}>
@@ -61,7 +56,7 @@ const Dialogs = (props) => {
         <div>{messagesElements}</div>
         <div>
           <textarea
-          value={props.newMessageText}
+            value={props.newMessageText}
             onChange={onMessageChange} ref={newMessageElement}
             name="" id="" cols="60" rows="4" />
         </div>

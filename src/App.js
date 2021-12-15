@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes, Switch } from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Setting from './components/Settings/Setting';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 
 
@@ -20,14 +21,11 @@ const App = (props) => {
           <div className="app-wrapper-content">
             <Routes>
               <Route path='dialogs/*' 
-                  element={<Dialogs 
-                    newMessageText={props.state.dialogsPage.newMessageText}
-                    state={props.state.dialogsPage}
-                    dispatch={props.dispatch}/>} />
+                  element={<DialogsContainer 
+                    store={props.store} />} />
               <Route path='profile' 
                   element={<Profile 
-                    state= {props.state.profilePage} 
-                    dispatch={props.dispatch}/>} />
+                    store= {props.store} />} />
               <Route path='news' element={<News />} />
               <Route path='music' element={<Music />} />
               <Route path='settings' element={<Setting />} />
