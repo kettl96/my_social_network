@@ -13,7 +13,6 @@ const MyPostsContainer = (props) => {
   let onPostChange = (text) => {
     let action = updateNewPostTextActionCreator(text);
     props.store.dispatch(action);
-
   }
 
   return (<MyPosts updateNewPostText={onPostChange}
