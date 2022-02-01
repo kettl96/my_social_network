@@ -15,7 +15,7 @@ const Navbar = (props) => {
           <li className={s.settings}><NavLink className={({ isActive }) => isActive && s.active} to="settings" >Settings</NavLink></li>
         </ul>
         <div>
-          <Friends friends={props.friends}/>
+          {/* <Friends friends={props.friends}/> */}
   
         </div>
       </nav>
