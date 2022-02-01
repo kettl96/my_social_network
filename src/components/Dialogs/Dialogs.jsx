@@ -29,11 +29,11 @@ const Dialogs = (props) => {
 
   let state = props.dialogsPage;
 
-  let dialogsElements = state.dialogs.map
-    (dialog => <DialogItem name={dialog.name} id={dialog.id} img={dialog.img} />);
+  let dialogsElements = state.dialogs.map(dialog => 
+  <DialogItem name={dialog.name} key={dialog.id} id={dialog.id} img={dialog.img} />);
 
-  let messagesElements = state.messages.map
-    (message => <Message message={message.message} id={message.id} isMine={message.isMine} />);
+  let messagesElements = state.messages.map(message => 
+  <Message message={message.message} key={message.id} id={message.id} isMine={message.isMine} />);
 
 
   let addMessage = () => {
@@ -56,7 +56,7 @@ const Dialogs = (props) => {
         <div>{messagesElements}</div>
         <div>
           <textarea
-            value={props.newMessageText}
+            value={state.newMessageText}
             onChange={onMessageChange} ref={newMessageElement}
             name="" id="" cols="60" rows="4" />
         </div>
