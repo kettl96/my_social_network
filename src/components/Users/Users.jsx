@@ -1,6 +1,8 @@
 import React from "react";
 import styles from './users.module.css';
 import { NavLink } from 'react-router-dom';
+import * as axios from 'axios';
+
 
 let ava = 'https://static.vecteezy.com/system/resources/thumbnails/001/993/889/small/beautiful-latin-woman-avatar-character-icon-free-vector.jpg';
 
@@ -29,8 +31,35 @@ let Users = (props) => {
         </div>
         <div>
           {u.followed
-            ? <button onClick={() => { props.unfollow(u.id) }}>Unfollow</button>
-            : <button onClick={() => { props.follow(u.id) }}>Follow</button>}
+            ? <button onClick={() => { 
+              axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                withCredentials: true,
+                headers: {
+                  'API-KEY': 'cd394e78-77fa-4733-ae4a-43c6efc86300'
+                }
+              })
+              .then(response => {
+                if (response.data.resultCode == 0) {
+                  props.unfollow(u.id)
+                }                
+              });              
+               }}>Unfollow</button>
+
+
+
+            : <button onClick={() => { 
+              axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                withCredentials: true,
+                headers: {
+                  'API-KEY': 'cd394e78-77fa-4733-ae4a-43c6efc86300'
+                }
+              })
+              .then(response => {
+                if (response.data.resultCode == 0) {
+                  props.follow(u.id)
+                }                
+              });
+               }}>Follow</button>}
         </div>
       </span>
       <span>
