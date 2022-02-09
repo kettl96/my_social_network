@@ -1,7 +1,6 @@
 import React from "react";
 import styles from './users.module.css';
 import { NavLink } from 'react-router-dom';
-import * as axios from 'axios';
 
 
 let ava = 'https://static.vecteezy.com/system/resources/thumbnails/001/993/889/small/beautiful-latin-woman-avatar-character-icon-free-vector.jpg';
@@ -25,22 +24,17 @@ let Users = (props) => {
         <span>
           <div>
             <NavLink to={'/profile/' + u.id}>
-
               <img src={u.photos.small != null ? u.photos.small : ava} className={styles.userPhoto} />
             </NavLink>
           </div>
           <div>
             {u.followed
-              ? <button disabled={props.followingInProgress
-                .some(id => id === u.id)}
+              ? <button disabled={props.followingInProgress.some(id => id === u.id)}
                 onClick={() => {
                   props.unfollow(u.id);
                 }}>Unfollow</button>
-
-              : <button disabled={props.followingInProgress
-                .some(id => id === u.id)}
-                onClick={() => {
-                  props.unfollow(u.id);
+              : <button disabled={props.followingInProgress.some(id => id === u.id)}
+                onClick={() => {props.follow(u.id);
                 }}>Follow</button>}
           </div>
         </span>
