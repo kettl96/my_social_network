@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Route, Routes } from 'react-router-dom';
+import { Navigate, NavLink, Route, Routes } from 'react-router-dom';
 import s from './Dialogs.module.css'
 
 const DialogItem = (props) => {
@@ -26,7 +26,6 @@ const Message = (props) => {
 }
 
 const Dialogs = (props) => {
-
   let state = props.dialogsPage;
 
   let dialogsElements = state.dialogs.map(dialog => 
@@ -45,8 +44,10 @@ const Dialogs = (props) => {
   let onMessageChange = () => {
     let text = newMessageElement.current.value;
     props.updateNewMessage(text);
-
   }
+  
+  if (!props.isAuth) return <Navigate to={'/login'} />
+
   return (
     <div className={s.dialogs}>
       <div className={s.dialogs_items}>
