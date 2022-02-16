@@ -21,14 +21,21 @@ class ProfileStatus extends React.Component {
   onStatusChange = (e) => {
     this.setState({
       status: e.currentTarget.value
-    }) 
+    })
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.status !== this.props.status) {
+      this.setState({
+        status: this.props.status
+      });
+    }
   }
 
   render() {
     return (
       <div>
         {!this.state.editMode &&
-          <div className={s.status_bar}> 
+          <div className={s.status_bar}>
             <span onClick={this.activatedEditMode}>-{this.props.status}-</span>
           </div>
         }
