@@ -3,6 +3,8 @@ import { Navigate, NavLink, Route, Routes } from 'react-router-dom';
 import s from './Dialogs.module.css'
 import { Field } from 'redux-form';
 import { reduxForm } from 'redux-form';
+import { Textarea } from './../common/FormControls/FormsControls';
+import { required } from './../../utils/validators';
 
 const DialogItem = (props) => {
   return <div className={s.dialog + ' ' + s.active}>
@@ -55,8 +57,8 @@ const AddMessageForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
-        <Field component='textarea' name='newMessageBody'
-          placeholder='Enter your message' />
+        <Field component={Textarea} name='newMessageBody'
+          placeholder='Enter your message' validate={required} />
       </div>
       <div><button>Send</button></div>
     </form>
