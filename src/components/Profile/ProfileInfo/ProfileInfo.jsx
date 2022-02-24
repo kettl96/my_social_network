@@ -1,14 +1,12 @@
 import React from 'react';
 import Preloader from '../../common/preloader/Preloader';
 import s from "./ProfileInfo.module.css"
-// import ProfileStatus from './ProfileStatus';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
     return <Preloader/>
   }
-  
   return (
     <div>
       <div className={s.profileHeader}>
