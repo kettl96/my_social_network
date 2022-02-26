@@ -23,8 +23,8 @@ const LoginForm = ({handleSubmit, error}) => {
         <Field component={Input} name={'rememberMe'} type={"checkbox"}
         /> remember me
       </div>
-      {
-        error && <div className={styles.formSummaryError}>
+      
+      { error && <div className={styles.formSummaryError}>
           {error}
         </div>
       }
