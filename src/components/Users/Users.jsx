@@ -23,4 +23,4 @@ let Users = ({ currentPage, totalUsersCount, onPageChanged,
   </div>
 }
 
-export default Users;
+export default Users
