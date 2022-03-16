@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers } from './../../redux/users-reducer';
+import { follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers } from '../../redux/users-reducer';
 import Users from './Users';
 import Preloader from '../common/preloader/Preloader';
 import { compose } from 'redux';
@@ -9,13 +9,28 @@ import {
   getCurrentPage, getFollowingInProgress, getIsFetching,
   getPageSize, getTotalUserCount, getUsersSelector
 } from '../../redux/users-selectors';
+import { UserType } from '../../types/types';
+import { AppStateType } from '../../redux/reduxStore';
 
-class UsersContainer extends React.Component {
+type PropsType = {
+  currentPage: number
+  pageSize: number
+  isFetching: boolean
+  totalUsersCount: number
+  users: Array<UserType>
+
+  follow: () => void
+  unfollow: () => void
+  followingInProgress: Array<number>
+  getUsers: (currentPage: number, pageSize: number) => void
+}
+
+class UsersContainer extends React.Component<PropsType> {
   componentDidMount() {
     this.props.getUsers(this.props.currentPage, this.props.pageSize);
   }
 
-  onPageChanged = (pageNumber) => {
+  onPageChanged = (pageNumber: number) => {
     this.props.getUsers(pageNumber, this.props.pageSize);
   }
 
@@ -36,7 +51,7 @@ class UsersContainer extends React.Component {
   }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType) => {
   return {
     users: getUsersSelector(state),
     pageSize: getPageSize(state),
