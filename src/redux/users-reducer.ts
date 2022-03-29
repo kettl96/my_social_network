@@ -138,7 +138,7 @@ export const follow = (userId: number): ThunkType => {
 export const unfollow = (userId: number): ThunkType => {
   return async (dispatch) => {
     dispatch(toggleFollowingProgress(true, userId));
-    let response = usersAPI.unfollow(userId)
+    let response = await usersAPI.unfollow(userId)
     if (response.data.resultCode == 0) {
       dispatch(unfollowSuccess(userId))
     }
